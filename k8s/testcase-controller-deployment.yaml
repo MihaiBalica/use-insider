@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testcase-controller
+  labels:
+    app: testcase-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testcase-controller
+  template:
+    metadata:
+      name: testcase-controller
+      labels:
+        app: testcase-controller
+    spec:
+      containers:
+        - name: testcase-controller
+          image: balicamihai/testcase-controller:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      restartPolicy: Always
+      

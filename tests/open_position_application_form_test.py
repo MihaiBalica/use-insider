@@ -1,9 +1,11 @@
+import pytest
+
 from pages.careers_page import CareersPage
 from pages.lever_application_form_page import LeverAppFormPage
 from pages.open_positions_page import OpenPositionsPage
 from pages.quality_assurance_page import QualityAssurance
 
-
+@pytest.mark("regression")
 def test_open_position_application_form(open_home_page):
     assert open_home_page.get_current_url() == "https://useinsider.com/"
     assert open_home_page.get_title() == "#1 Leader in Individualized, Cross-Channel CX — Insider"
