@@ -6,7 +6,7 @@ metadata:
   labels:
     app: chrome-node
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: chrome-node
@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
         - name: chrome-node
-          image: balicamihai/chrome-node:latest
+          image: selenium/node-chrome:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: SE_EVENT_BUS_HOST
-              value: selenium-hub
+              value: selenium-hub-service
             - name: SE_EVENT_BUS_PUBLISH_PORT
               value: "4442"
             - name: SE_EVENT_BUS_SUBSCRIBE_PORT
@@ -34,6 +34,7 @@ spec:
           ports:
             - containerPort: 5555
               protocol: TCP
-      imagePullSecrets:
-        - name: dockerhub-secret
-      restartPolicy: Always
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory

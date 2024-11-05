@@ -22,7 +22,8 @@ spec:
           ports:
             - containerPort: 4317
               protocol: TCP
-          command: [ "--config=/etc/otel-collector-config.yaml" ]
+          args:
+            - --config=/etc/otel-collector-config.yaml
           volumeMounts:
             - name: otel-collector-config
               mountPath: /etc/otel-collector-config.yaml
