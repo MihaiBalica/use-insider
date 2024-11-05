@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: selenium-hub
+  namespace: default
   labels:
     app: selenium-hub
 spec:
@@ -25,5 +26,7 @@ spec:
           ports:
             - containerPort: 4444
               protocol: TCP
+      imagePullSecrets:
+        - name: dockerhub-secret
       restartPolicy: Always
       

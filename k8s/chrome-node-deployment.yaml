@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chrome-node
+  namespace: default
   labels:
     app: chrome-node
 spec:
@@ -31,8 +32,6 @@ spec:
           ports:
             - containerPort: 5555
               protocol: TCP
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "1Gi"
+      imagePullSecrets:
+        - name: dockerhub-secret
       restartPolicy: Always

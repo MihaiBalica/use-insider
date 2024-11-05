@@ -10,9 +10,11 @@ def deploy_resources():
     core_api = client.CoreV1Api()
 
     # Apply YAML files
-    utils.create_from_yaml(api, 'k8s/testcase-controller-deployment.yaml')
-    utils.create_from_yaml(api, 'k8s/chrome-node-deployment.yaml')
-    utils.create_from_yaml(core_api, 'k8s/chrome-node-service.yaml')
+    utils.create_from_yaml(k8s_client=api, yaml_file='k8s/testcase-controller-deployment.yaml')
+    utils.create_from_yaml(k8s_client=api, yaml_file='k8s/chrome-node-deployment.yaml')
+    utils.create_from_yaml(k8s_client=core_api, yaml_file='k8s/chrome-node-service.yaml')
+    utils.create_from_yaml(k8s_client=api, yaml_file='k8s/selenium-hub-deployment.yaml')
+    utils.create_from_yaml(k8s_client=core_api, yaml_file='k8s/selenium-hub-service.yaml')
 
     # Wait for Chrome Node Pod to be ready
     ready = False
@@ -25,3 +27,6 @@ def deploy_resources():
         time.sleep(5)
 
     print(f"Deployment is successful. Pods: {pod_list.items}")
+
+if __name__ == '__main__':
+    deploy_resources()

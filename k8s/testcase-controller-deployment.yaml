@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: testcase-controller
+  namespace: default
   labels:
     app: testcase-controller
 spec:
@@ -22,5 +23,5 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-      restartPolicy: Always
-      
+      imagePullSecrets:
+        - name: dockerhub-secret
