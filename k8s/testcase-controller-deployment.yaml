@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: testcase-controller
-          image: balicamihai/testcase-controller:latest
+          image: balicamihai/testcase-controller:amd64-1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

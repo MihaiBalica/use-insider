@@ -9,5 +9,5 @@ spec:
     - protocol: TCP
       port: 4444
       targetPort: 4444
-  type: NodePort
+  type: ClusterIP
   

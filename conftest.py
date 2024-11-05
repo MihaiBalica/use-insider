@@ -1,3 +1,5 @@
+from webbrowser import Chrome
+
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -8,7 +10,7 @@ from pages.home_page import HomePage
 
 @pytest.fixture(scope='session')
 def browser():
-    options = Options()
+    options = webdriver.ChromeOptions()
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-popup-blocking")
     options.add_argument("--disable-infobars")
@@ -21,10 +23,10 @@ def browser():
     options.add_argument("--headless=new")
 
     selenium_grid_url = "http://selenium-hub-service:4444/wd/hub"
-
+    ChromeDriverManager().install()
     # service = Service(ChromeDriverManager().install())
     driver = webdriver.Remote(command_executor=selenium_grid_url, options=options)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(30)
     driver.maximize_window()
 
     yield driver
