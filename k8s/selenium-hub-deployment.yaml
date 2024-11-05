@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-hub
+  labels:
+    app: selenium-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selenium-hub
+  template:
+    metadata:
+      name: selenium-hub
+      labels:
+        app: selenium-hub
+    spec:
+      containers:
+        - name: selenium-hub
+          image: selenium/hub:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GRID_MAX_SESSION
+              value: "10"
+          ports:
+            - containerPort: 4444
+              protocol: TCP
+      restartPolicy: Always
+      

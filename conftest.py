@@ -17,9 +17,13 @@ def browser():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
     options.add_argument("--start-maximized")
+    options.add_argument("--ignore-certificate-errors")
+    options.add_argument("--headless=new")
 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    selenium_grid_url = "http://selenium-hub-service:4444/wd/hub"
+
+    # service = Service(ChromeDriverManager().install())
+    driver = webdriver.Remote(command_executor=selenium_grid_url, options=options)
     driver.implicitly_wait(10)
     driver.maximize_window()
 
