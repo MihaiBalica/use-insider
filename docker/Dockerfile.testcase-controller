@@ -5,6 +5,12 @@ WORKDIR /app
 
 COPY . /app
 
+RUN apt-get update && apt-get install -y \
+    libx11-dev \
+    libgdk-pixbuf2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["pytest", "-m", "regression"]
+ENTRYPOINT ["pytest"]
+CMD ["-m", "regression"]

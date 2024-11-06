@@ -6,13 +6,12 @@ metadata:
   labels:
     app: chrome-node
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: chrome-node
   template:
     metadata:
-      name: chrome-node
       labels:
         app: chrome-node
     spec:
@@ -28,12 +27,38 @@ spec:
             - name: SE_EVENT_BUS_SUBSCRIBE_PORT
               value: "4443"
             - name: SE_NODE_MAX_SESSIONS
-              value: "2"
+              value: "1"
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://otel-collector:4317"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=selenium-chrome-node,service.version=1.0"
+            - name: OTEL_TRACES_SAMPLER
+              value: "always_on"
           ports:
             - containerPort: 5555
               protocol: TCP
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 5555
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: 5555
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
       volumes:
         - name: dshm
           emptyDir:

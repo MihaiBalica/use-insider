@@ -6,8 +6,17 @@ spec:
   selector:
     app: selenium-hub
   ports:
-    - protocol: TCP
+    - name: hub
+      protocol: TCP
       port: 4444
       targetPort: 4444
+    - name: events-publish
+      protocol: TCP
+      port: 4442
+      targetPort: 4442
+    - name: events-subscribe
+      protocol: TCP
+      port: 4443
+      targetPort: 4443
   type: ClusterIP
   
