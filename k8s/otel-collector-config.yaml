@@ -18,6 +18,7 @@ data:
         verbosity: detailed
       otlp:
         endpoint: "http://otel-collector:4318"
+        insecure: true
 
     service:
       pipelines:
