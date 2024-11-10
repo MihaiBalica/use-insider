@@ -17,7 +17,7 @@ data:
       debug:
         verbosity: detailed
       otlp:
-        endpoint: "http://localhost:4318"
+        endpoint: "http://otel-collector:4318"
 
     service:
       pipelines:
