@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-hub
+  namespace: default
+  labels:
+    app: selenium-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selenium-hub
+  template:
+    metadata:
+      name: selenium-hub
+      labels:
+        app: selenium-hub
+    spec:
+      containers:
+        - name: selenium-hub
+          image: selenium/hub:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GRID_MAX_SESSION
+              value: "2"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector:4317"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=selenium-hub"
+            - name: OTEL_METRICS_EXPORTER
+              value: "none"
+          ports:
+            - containerPort: 4444
+              protocol: TCP
+            - containerPort: 4443
+              protocol: TCP
+            - containerPort: 4442
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /grid/console
+              port: 4444
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /grid/console
+              port: 4444
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      restartPolicy: Always
+      

@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: testcase-controller
+  namespace: default
+  labels:
+    app: testcase-controller
+spec:
+  template:
+    metadata:
+      name: testcase-controller
+      labels:
+        app: testcase-controller
+    spec:
+      containers:
+        - name: testcase-controller
+          image: balicamihai/testcase-controller:amd64-7
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: USE_SELENIUM_GRID
+              value: "true"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "2Gi"
+              cpu: "2"
+      imagePullSecrets:
+        - name: dockerhub-secret
+      restartPolicy: Never
+  backoffLimit: 1
