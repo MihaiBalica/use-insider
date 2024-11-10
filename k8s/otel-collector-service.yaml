@@ -12,7 +12,7 @@ spec:
     - protocol: TCP
       port: 4317
       targetPort: 4317
-      name: otel-collector-gRPC
+      name: otel-collector-grpc
     - protocol: TCP
       port: 4318
       targetPort: 4318
