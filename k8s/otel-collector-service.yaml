@@ -12,7 +12,9 @@ spec:
     - protocol: TCP
       port: 4317
       targetPort: 4317
+      name: otel-collector-gRPC
     - protocol: TCP
       port: 4318
       targetPort: 4318
+      name: otel-collector-http
   type: ClusterIP
