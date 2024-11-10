@@ -15,10 +15,6 @@ data:
       debug:
         verbosity: detailed
       otlp:
-        endpoint: "otel-collector:4318"
-        tls:
-          insecure: true
-      otlphttp:
         endpoint: "otel-collector:4317"
         tls:
           insecure: true
