@@ -21,8 +21,8 @@ def browser():
     options.add_argument("--no-sandbox")
     options.add_argument("--start-maximized")
     options.add_argument("--ignore-certificate-errors")
-    options.add_argument("--headless")
-    options.add_argument("--window-size=1920,1080")
+    # options.add_argument("--headless")
+    # options.add_argument("--window-size=1920,1080")
 
     selenium_grid_url = "http://selenium-hub-service:4444/wd/hub"
     use_grid = os.getenv("USE_SELENIUM_GRID", "false").lower() == "true"
