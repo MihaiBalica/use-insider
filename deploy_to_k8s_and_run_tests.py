@@ -12,7 +12,7 @@ def deploy_resources():
 
     # Apply YAML files
     try:
-        utils.create_from_yaml(k8s_client=api, yaml_file='k8s/otel-collector-config.yaml')
+        utils.create_from_yaml(k8s_client=core_api, yaml_file='k8s/otel-collector-config.yaml')
         utils.create_from_yaml(k8s_client=api, yaml_file='k8s/otel-collector.yaml')
         utils.create_from_yaml(k8s_client=core_api, yaml_file='k8s/otel-collector-service.yaml')
         utils.create_from_yaml(k8s_client=api, yaml_file='k8s/selenium-hub-deployment.yaml')
