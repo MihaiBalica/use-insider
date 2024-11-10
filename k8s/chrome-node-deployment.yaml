@@ -34,6 +34,8 @@ spec:
               value: "service.name=selenium-chrome-node,service.version=1.0"
             - name: OTEL_TRACES_SAMPLER
               value: "always_on"
+            - name: SE_NODE_GRID_URL
+              value: "http://selenium-hub-service:4444"
           ports:
             - containerPort: 5555
               protocol: TCP
