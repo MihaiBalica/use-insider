@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: testcase-controller
-          image: balicamihai/testcase-controller:amd64-6
+          image: balicamihai/testcase-controller:amd64-7
           imagePullPolicy: IfNotPresent
           env:
             - name: USE_SELENIUM_GRID
