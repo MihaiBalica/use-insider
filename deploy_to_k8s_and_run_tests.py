@@ -7,7 +7,7 @@ config.load_kube_config()
 # Define deployment function
 def deploy_resources():
     api = client.ApiClient()
-    core_api = client.CoreV1Api()
+    core_api = client.ApiClient()
     batch_api = client.BatchV1Api()
 
     # Apply YAML files
