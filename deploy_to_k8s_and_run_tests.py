@@ -10,7 +10,7 @@ def deploy_resources():
     core_api = client.CoreV1Api()
 
     # Apply YAML files
-    utils.create_from_yaml(k8s_client=api, yaml_file='k8s/testcase-controller-deployment.yaml')
+    utils.create_from_yaml(k8s_client=api, yaml_file='k8s/testcase-controller-job.yaml')
     utils.create_from_yaml(k8s_client=api, yaml_file='k8s/chrome-node-deployment.yaml')
     utils.create_from_yaml(k8s_client=core_api, yaml_file='k8s/chrome-node-service.yaml')
     utils.create_from_yaml(k8s_client=api, yaml_file='k8s/selenium-hub-deployment.yaml')
