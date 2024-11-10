@@ -6,7 +6,7 @@ config.load_kube_config()
 
 # Define deployment function
 def deploy_resources():
-    api = client.AppsV1Api()
+    api = client.ApiClient()
     core_api = client.CoreV1Api()
     batch_api = client.BatchV1Api()
 
