@@ -12,4 +12,7 @@ spec:
     - protocol: TCP
       port: 4317
       targetPort: 4317
+    - protocol: TCP
+      port: 4318
+      targetPort: 4318
   type: ClusterIP
